@@ -1,0 +1,26 @@
+@font-face {
+  font-family: "Amazon Ember";
+  src: url("../assets/fonts/AmazonEmber_Rg.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Amazon Ember Medium";
+  src: url("../assets/fonts/Amazon-Ember-Medium.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Amazon Ember Light";
+  src: url("../assets/fonts/AmazonEmber_Lt.ttf") format("truetype");
+}
+
+* {
+  margin: 0;
+  font-family: 'Amazon Ember', sans-serif;
+  box-sizing: border-box;
+}
+
+/* Styles footer */
+.footer:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
