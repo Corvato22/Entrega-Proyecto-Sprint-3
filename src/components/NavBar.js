@@ -17,7 +17,7 @@ export const NavBar = () => {
     return (
         <>
             <Flex bg='#131921' w='100%' h='64px' py='12px' px='24px' color='white' justify='space-between'>
-                <Image w='130px' objectFit='cover' src='https://res.cloudinary.com/dzyyi4p7x/image/upload/v1639024774/Amazonas/logo_to17rl.png' alt='Logo' _hover={{ transform: 'scale(0.98)', cursor: 'pointer' }} _active={{ transform: 'scale(0.95)' }} />
+                <Image w='130px' objectFit='cover' src='https://res.cloudinary.com/dzyyi4p7x/image/upload/v1639024774/Amazonas/images/logo_to17rl.png' alt='Logo' _hover={{ transform: 'scale(0.98)', cursor: 'pointer' }} _active={{ transform: 'scale(0.95)' }} />
 
                 <Box w='137px' minW='75px' mx='25px' color='white' _hover={{ transform: 'scale(0.97)', cursor: 'pointer' }} _active={{ transform: 'scale(0.90)' }}>
                     <Text fontSize='12px'> Enviar a</Text>
