@@ -30,7 +30,9 @@ export const Detail = () => {
     let product = products.find(e => e.id == idProduct.id)
 
     let image_1 = product.images.img_1
+    // eslint-disable-next-line
     let image_2 = product.images.img_2
+    // eslint-disable-next-line
     let image_3 = product.images.img_3
 
 
