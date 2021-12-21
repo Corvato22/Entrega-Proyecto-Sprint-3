@@ -15,15 +15,13 @@ import { Footer } from '../components/Footer';
 export const Home = () => {
 
     const { products } = useSelector(store => store.product);
-
+    
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(listProductsAsync())
         // eslint-disable-next-line
     }, [])
-
-    const endPoint = "este_seria_el_uid"
 
     return (
         <>
@@ -51,7 +49,7 @@ export const Home = () => {
                     :
                     <Grid my='30px' justifyItems='center' templateColumns='repeat(5, 1fr)' gap={1}>{
                         products.map((e, i) => (
-                            <Link key={i} to={`/detail/${endPoint}`}>
+                            <Link key={i} to={`/detail/${e.id}`}>
                                 <Box key={i} maxW='300px' minW='300px'>
                                     <Box w='300px' h='300px' display='flex' alignItems='center' justifyContent='center' mb='10px'>
                                         <Image maxW='300px' maxH='300px' src={e.images.img_1} alt={"e.name"} _hover={{ cursor: "pointer" }} />

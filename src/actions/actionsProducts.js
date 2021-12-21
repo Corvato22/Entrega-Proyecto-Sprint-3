@@ -8,7 +8,7 @@ export const searchAsyn = (product) => {
     return async (dispatch) => {
 
         const productCollection = collection(db, "products");
-        const q = query(productCollection, where("name", "==", product))
+        const q = query(productCollection, where("search", "==", product))
         const datos = await getDocs(q);
         const producto = [];
         datos.forEach((docu) => {

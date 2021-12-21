@@ -39,7 +39,7 @@ export const Footer = () => {
 
                 </Box>
                 <Box w='100%' display='flex' alignItems='center' justifyContent='center'>
-                    <Image w='130px' objectFit='cover' src='https://res.cloudinary.com/dzyyi4p7x/image/upload/v1639024774/Amazonas/logo_to17rl.png' alt='Logo' _hover={{ transform: 'scale(0.98)', cursor: 'pointer' }} _active={{ transform: 'scale(0.95)' }} />
+                    <Image w='130px' objectFit='cover' src='https://res.cloudinary.com/dzyyi4p7x/image/upload/v1639024774/Amazonas/images/logo_to17rl.png' alt='Logo' _hover={{ transform: 'scale(0.98)', cursor: 'pointer' }} _active={{ transform: 'scale(0.95)' }} />
                 </Box>
             </Box>
 

@@ -1,7 +1,6 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMapMarkerAlt, faSearch, faSortDown, faBars } from '@fortawesome/free-solid-svg-icons'
-
 import {
     Box,
     Image,
@@ -12,8 +11,27 @@ import {
     InputRightElement,
     Button
 } from '@chakra-ui/react'
+import { useDispatch } from 'react-redux';
+import { searchAsyn } from '../actions/actionsProducts';
+import { useFormik } from 'formik'
+import * as Yup from 'yup';
 
 export const NavBar = () => {
+
+    const dispatch = useDispatch();
+
+    const formik = useFormik({
+        initialValues: {
+            search: ''
+        },
+        validationSchema: Yup.object({
+            search: Yup.string().required()
+        }),
+        onSubmit: ({ search }) => {
+            dispatch(searchAsyn(search))
+            console.log(search)
+        }
+    })
     return (
         <>
             <Flex bg='#131921' w='100%' h='64px' py='12px' px='24px' color='white' justify='space-between'>
@@ -24,21 +42,23 @@ export const NavBar = () => {
                     <Text fontSize='14px' fontWeight='bold'> <FontAwesomeIcon icon={faMapMarkerAlt} /> Colombia</Text>
                 </Box>
 
-                <InputGroup size='md' minW='255px'>
-                    <Input
-                        bg='white' pr='4.5rem' color='black' focusBorderColor='#febd69' />
-                    <InputRightElement width='20%' justifyContent='flex-end'>
-                        <Button
-                            bg='#febd69'
-                            color='black'
-                            h='100%'
-                            size='sm'
-                            borderLeftRadius="0"
-                            _hover={{ background: "#f3a847", color: "black", }} _active={{ transform: 'scale(0.90)' }}>
-                            <FontAwesomeIcon icon={faSearch} style={{ width: '16px', height: '16px' }} />
-                        </Button>
-                    </InputRightElement>
-                </InputGroup>
+                <form style={{ width: '100%' }} onSubmit={formik.handleSubmit}>
+                    <InputGroup size='md' minW='255px'>
+                        <Input
+                            bg='white' pr='4.5rem' color='black' focusBorderColor='#febd69' name="search" onChange={formik.handleChange} />
+                        <InputRightElement width='20%' justifyContent='flex-end'>
+                            <Button
+                                bg='#febd69'
+                                color='black'
+                                h='100%'
+                                size='sm'
+                                borderLeftRadius="0"
+                                _hover={{ background: "#f3a847", color: "black", }} _active={{ transform: 'scale(0.90)' }}>
+                                <FontAwesomeIcon icon={faSearch} style={{ width: '16px', height: '16px' }} />
+                            </Button>
+                        </InputRightElement>
+                    </InputGroup>
+                </form>
 
                 <Box w='110px' minW='110px' mx='25px' color='white' _hover={{ transform: 'scale(0.97)', cursor: 'pointer' }} _active={{ transform: 'scale(0.90)' }} >
                     <Text fontSize='12px'>Hola, identifícate</Text>

@@ -1,15 +1,38 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import ReactImageMagnify from 'react-image-magnify'
 import { Box, Divider, ListItem, Text, UnorderedList } from '@chakra-ui/react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { Footer } from '../components/Footer'
 import { NavBar } from '../components/NavBar'
+import { useDispatch, useSelector } from 'react-redux'
+import { listProductsAsync } from '../actions/actionsProducts'
 
 export const Detail = () => {
 
-    let image = 'https://res.cloudinary.com/dzyyi4p7x/image/upload/v1639215469/Amazonas/products-images/PC_3_1_hfsjfs.jpg'
+
+    const { products } = useSelector(store => store.product);
+
+    console.log('products', products)
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(listProductsAsync())
+        // eslint-disable-next-line
+    }, [])
+
+    const paramsCategory = useParams()
+    const idProduct = paramsCategory
+
+    // eslint-disable-next-line
+    let product = products.find(e => e.id == idProduct.id)
+
+    let image_1 = product.images.img_1
+    let image_2 = product.images.img_2
+    let image_3 = product.images.img_3
+
 
     return (
         <>
@@ -21,16 +44,16 @@ export const Detail = () => {
             </Box>
             <Box my='60px' px='5%' display="flex" alignItems='top' justifyContent='space-around' w='100%' h='800px'>
 
-                <Box w='660px' h='660px' color='#0F1111'>
+                <Box w='480px' h='480px' color='#0F1111'>
                     <ReactImageMagnify  {...{
                         smallImage: {
                             isFluidWidth: true,
-                            src: image,
+                            src: image_1,
                         },
                         largeImage: {
-                            src: image,
-                            width: 1315,
-                            height: 1505.58
+                            src: image_1,
+                            width: 700,
+                            height: 700
                         },
                         lensStyle: {
                             background: '#00bfff1c',
@@ -42,21 +65,21 @@ export const Detail = () => {
                 <Box w='660px' color='#0F1111'>
 
                     <Text fontSize='24px' fontWeight='semi-bold'>
-                        Canon EOS R6 - Cámara sin Espejo de Marco Completo + Lente RF24-105mm F4 L IS USM
+                        {product.name}
                     </Text>
 
                     <Divider opacity='1' mb='10px' />
 
                     <Box as='span' fontSize='14px' color='#565959'>
-                        Precio: <Box as='span' fontSize='18px' color='#C7511F'>US$26.99</Box>
+                        Precio: <Box as='span' fontSize='18px' color='#C7511F'>US$ {product.price}</Box>
                     </Box>
 
                     <Text fontSize='16px' fontWeight='bold' my='20px'>Acerca de este artículo</Text>
                     <UnorderedList fontSize='14px'>
-                        <ListItem>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Adipisci delectus quas quasi dolorem culpa quod, ipsam enim doloremque consequatur quibusdam aliquam nostrum hic similique asperiores unde quia dignissimos alias rerum atque amet animi repudiandae molestiae dolorum reiciendis? Quibusdam cumque nobis eius iste accusantium blanditiis asperiores nesciunt obcaecati saepe, nostrum quasi.</ListItem>
-                        <ListItem>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Adipisci delectus quas quasi dolorem culpa quod, ipsam enim doloremque consequatur quibusdam aliquam nostrum hic similique asperiores unde quia dignissimos alias rerum atque amet animi repudiandae molestiae dolorum reiciendis? Quibusdam cumque nobis eius iste accusantium blanditiis asperiores nesciunt obcaecati saepe, nostrum quasi.</ListItem>
-                        <ListItem>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Adipisci delectus quas quasi dolorem culpa quod, ipsam enim doloremque consequatur quibusdam aliquam nostrum hic similique asperiores unde quia dignissimos alias rerum atque amet animi repudiandae molestiae dolorum reiciendis? Quibusdam cumque nobis eius iste accusantium blanditiis asperiores nesciunt obcaecati saepe, nostrum quasi.</ListItem>
-                        <ListItem>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Adipisci delectus quas quasi dolorem culpa quod, ipsam enim doloremque consequatur quibusdam aliquam nostrum hic similique asperiores unde quia dignissimos alias rerum atque amet animi repudiandae molestiae dolorum reiciendis? Quibusdam cumque nobis eius iste accusantium blanditiis asperiores nesciunt obcaecati saepe, nostrum quasi.</ListItem>
+                        <ListItem>{product.about.about_1}</ListItem>
+                        <ListItem>{product.about.about_2}</ListItem>
+                        <ListItem>{product.about.about_3}</ListItem>
+                        <ListItem>{product.about.about_4}</ListItem>
                     </UnorderedList>
                 </Box>
             </Box>
